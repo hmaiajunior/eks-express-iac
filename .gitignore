@@ -1,2 +1,4 @@
 00-backend/.terraform
 00-backend/.terraform.lock.hcl/
+01-networking/.terraform
+01-networking/.terraform.lock.hcl/
