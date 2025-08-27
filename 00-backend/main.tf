@@ -5,14 +5,7 @@ terraform {
       version = "~> 5.0"
     }
   }
-
-  backend "s3" {
-    bucket         = "eks-express-terraform-state-files-01"
-    key            = "networking/terraform.tfstate"
-    region         = "us-east-1"
-  }
 }
-
 
 provider "aws" {
   region = var.region
@@ -26,5 +19,3 @@ provider "aws" {
     #external_id = var.assume_role.external_id
   }
 }
-
-

@@ -32,7 +32,7 @@ variable "remote_backend" {
   default = {
     bucket = "eks-express-terraform-state-files-01"
     state_locking = {
-      dynamodb_table_name = "eks-express-terraform-state-locking"
+      dynamodb_table_name = "eks-express-terraform-state-locking-01"
       dynamodb_table_billing_mode = "PAY_PER_REQUEST"
       dynamodb_table_hash_key = "LockID"
       dynamodb_table_hash_key_type = "S"
