@@ -1,0 +1,33 @@
+EKS auto-mode: Recurso disponível que o EKS é 100% gerenciável de modo que você não precisa se preocupar com praticamente nada no seu cluster.
+
+Existe também o EKS híbrido onde você pode, por exemplo, ter parte dos seus nodes sendo executados no seu ambiente on-premise.
+
+Caso queira trabalhar com kubernets sem o gerenciamento das instâncias, pode-se utilizar o serviço da AWS chamado de Fargate.
+
+==> Deploy EKS
+
+Uma vez realizado o deploy do EKS, pode-se utilizar o comando abaixo para adicioná-lo ao seu kube config:
+
+aws eks update-kubeconfig --region us-east-1 --name eks-express-cluster
+
+
+==> VPC CNI (Container Network Interface)
+
+Interface de redes para containeres específica para EKS. É executado no namespace kube-system (daemon-set), sob o pod chamado de aws-node. Ele é responsável por habilitar a comunicação interna para os pods que estão rodando dentro do cluster como se ele fosse um serviço qualquer dentro da VPC. Ao subir um pod dentro desse cluster você irá verificar que o IP que ele vai receber será o IP dentro do range da VPC.
+
+Então, a função da VPC CNI é permitir que os pods recebam IPs, se comuniquem entre si e com o mundo externo, de forma padronizada e modular.
+
+Recomendações kubernets:
+
+No máximo 110 pods em um nó
+No máximo 5000 nós em cluster
+
+==> Metrics server
+
+Componente que habilita o comando top no seu kubectl que irá permitir visualizar a quantidade de recurso (COU e memória) que seus nodes e pods estão utilizando, permitindo assim o uso de VPA e HPA. Por padrão as métricas já estão disponíveis no kubelet, porém elas não estão disponíveis via API e é exatamente isso que o metrics server torna possível.
+
+==> EBS CSI
+
+Permite o provisionamento de EBS para os pods. Necessário realizar a instalação do addon "aws-ebs-csi-driver" e para que ele funcione é preciso fazer o uso do IRSA (IAM Role for Service Account)
+
+

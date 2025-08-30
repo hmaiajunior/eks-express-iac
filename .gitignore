@@ -2,3 +2,5 @@
 00-backend/.terraform.lock.hcl/
 01-networking/.terraform
 01-networking/.terraform.lock.hcl/
+02-eks-cluster/.terraform
+03-eks-cluster/.terraform.lock.hcl/
